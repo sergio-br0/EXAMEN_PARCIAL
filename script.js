@@ -159,5 +159,9 @@ const consultarTodosLosPaises = async () => {
     }
   };
 
-  
+  // agregar evento al boton  para consultar todos los países
+const botonConsultarTodos = document.getElementById('botonConsultarTodos');
+botonConsultarTodos.addEventListener('click', consultarTodosLosPaises);
+
+
   
