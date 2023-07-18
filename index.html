@@ -4,32 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CONSULTA DE PAÍSES</title>
+    <!-- Agregar enlaces a los estilos de Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>API CONUNTRY</h1>
-    <form id="formulario">
-        <select name="tipoBusqueda">
-            <option value="nombre">Buscar por nombre</option>
-            <option value="idioma">Buscar por idioma</option>
-        </select>
-        <input type="text" name="valorBusqueda" id="valorBusqueda">
-        <button type="submit">Buscar</button>
-        <button id="botonConsultarTodos" type="button">Todos los países</button>
-    </form>
-    <p id="resultado"></p>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>PAÍS</th>
-                <th>POBLACIÓN</th>
-                <th>CAPITAL</th>
-                <th>IDIOMA</th>
-                <th>BANDERA</th>
-            </tr>
-        </thead>
-        <tbody id="tablaResultados">
-        </tbody>
-    </table>
+    <h1 class="text-center">API BUSQUEDA DE PAISES</h1>
+    <div class="container mt-4">
+        <form id="formulario" class="mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <select name="tipoBusqueda" class="form-select">
+                        <option value="nombre">Buscar por nombre</option>
+                        <option value="idioma">Buscar por idioma</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" name="valorBusqueda" id="valorBusqueda" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <button id="botonConsultarTodos" type="button" class="btn btn-secondary">Todos los países</button>
+                </div>
+            </div>
+        </form>
+        <p id="resultado"></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>PAÍS</th>
+                    <th>POBLACIÓN</th>
+                    <th>CAPITAL</th>
+                    <th>IDIOMA</th>
+                    <th>BANDERA</th>
+                </tr>
+            </thead>
+            <tbody id="tablaResultados">
+            </tbody>
+        </table>
+    </div>
+    <!-- Agregar enlace al archivo de script.js -->
     <script src="script.js"></script>
+    <!-- Agregar enlace al archivo de los scripts de Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
