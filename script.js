@@ -43,7 +43,7 @@ formulario.addEventListener('submit', async (evento) => {
             if (paises.length === 0) {
                 estado.innerText = 'No se encontraron países';
                 alert('No se encontraron países con los criterios de búsqueda proporcionados.');
-                
+
             } else {
                 estado.innerText = `Mostrando ${paises.length} país(es)`;
 
