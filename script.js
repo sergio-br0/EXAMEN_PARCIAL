@@ -12,6 +12,7 @@ formulario.addEventListener('submit', async (evento) => {
 
     if (valorBusqueda === '') {
         alert("Debe ingresar un valor de búsqueda");
+        console.log('Error: Debe ingresar un valor de búsqueda');
         return;
     }
 
@@ -42,6 +43,7 @@ formulario.addEventListener('submit', async (evento) => {
             if (paises.length === 0) {
                 estado.innerText = 'No se encontraron países';
                 alert('No se encontraron países con los criterios de búsqueda proporcionados.');
+                
             } else {
                 estado.innerText = `Mostrando ${paises.length} país(es)`;
 
@@ -87,7 +89,7 @@ formulario.addEventListener('submit', async (evento) => {
         }
     } catch (error) {
         estado.innerText = 'Error en la consulta';
-        console.log(error);
+        console.log('Error: Ocurrió un error en la consulta. Por favor, inténtalo nuevamente.');
         alert('Ocurrió un error en la consulta. Por favor, inténtalo nuevamente.');
     }
 });
