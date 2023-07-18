@@ -82,13 +82,13 @@ formulario.addEventListener('submit', async (evento) => {
             }
             //si no se cumple con lo antes requerido se mostraran mensajes de alertas..
         } else {
-            estado.innerText = 'Error en la consulta a la API';
-            alert('Ocurrió un error en la consulta a la API. Por favor, inténtalo nuevamente.');
+            estado.innerText = 'Error en la consulta';
+            alert('Ocurrió un error en la consulta. Por favor, inténtalo nuevamente.');
         }
     } catch (error) {
-        estado.innerText = 'Error en la consulta a la API';
+        estado.innerText = 'Error en la consulta';
         console.log(error);
-        alert('Ocurrió un error en la consulta a la API. Por favor, inténtalo nuevamente.');
+        alert('Ocurrió un error en la consulta. Por favor, inténtalo nuevamente.');
     }
 });
 
@@ -97,71 +97,70 @@ formulario.addEventListener('submit', async (evento) => {
 const consultarTodosLosPaises = async () => {
     estado.innerText = 'Cargando todos los países...';
     tablaResultados.innerHTML = '';
-  
+
     try {
-      const respuesta = await fetch('https://restcountries.com/v3.1/all');
-      if (respuesta.ok) {
-        const data = await respuesta.json();
-        const paises = Object.values(data);
-  
-        if (paises.length === 0) {
-          estado.innerText = 'No se encontraron países';
-          alert('No se encontraron países.');
+        const respuesta = await fetch('https://restcountries.com/v3.1/all');
+        if (respuesta.ok) {
+            const data = await respuesta.json();
+            const paises = Object.values(data);
+
+            if (paises.length === 0) {
+                estado.innerText = 'No se encontraron países';
+                alert('No se encontraron países.');
+            } else {
+                estado.innerText = `Mostrando ${paises.length} país(es)`;
+
+                // Mostrar los datos de cada país en la consola y en la tabla de resultados
+                paises.forEach((pais) => {
+                    console.log('Nombre del país:', pais.name.common);
+                    console.log('Población:', pais.population);
+                    console.log('Capital:', pais.capital?.[0]);
+                    console.log('Idiomas:', pais.languages ? Object.values(pais.languages).join(', ') : 'N/A');
+                    console.log('Bandera:', pais.flags.png);
+                    console.log('-----------------------');
+
+                    // Crear elementos HTML para mostrar los datos de los países
+                    const row = document.createElement('tr');
+                    const nombre = document.createElement('td');
+                    nombre.textContent = pais.name.common;
+                    const poblacion = document.createElement('td');
+                    poblacion.textContent = pais.population;
+                    const capital = document.createElement('td');
+                    capital.textContent = pais.capital?.[0];
+                    const idiomas = document.createElement('td');
+                    idiomas.textContent = pais.languages ? Object.values(pais.languages).join(', ') : 'N/A';
+                    const bandera = document.createElement('td');
+                    const imagen = document.createElement('img');
+                    imagen.src = pais.flags.png;
+                    imagen.alt = pais.name.common;
+                    imagen.style.width = '50px';
+                    bandera.appendChild(imagen);
+
+                    // Agregar los elementos al DOM para mostrar los datos del país en la tabla de resultados
+                    row.appendChild(nombre);
+                    row.appendChild(poblacion);
+                    row.appendChild(capital);
+                    row.appendChild(idiomas);
+                    row.appendChild(bandera);
+
+                    tablaResultados.appendChild(row);
+                });
+            }
+
+            // si no se cumple con la busqueda de informacion se musetra un alerta.
         } else {
-          estado.innerText = `Mostrando ${paises.length} país(es)`;
-  
-          // Mostrar los datos de cada país en la consola y en la tabla de resultados
-          paises.forEach((pais) => {
-            console.log('Nombre del país:', pais.name.common);
-            console.log('Población:', pais.population);
-            console.log('Capital:', pais.capital?.[0]);
-            console.log('Idiomas:', pais.languages ? Object.values(pais.languages).join(', ') : 'N/A');
-            console.log('Bandera:', pais.flags.png);
-            console.log('-----------------------');
-  
-            // Crear elementos HTML para mostrar los datos de los países
-            const row = document.createElement('tr');
-            const nombre = document.createElement('td');
-            nombre.textContent = pais.name.common;
-            const poblacion = document.createElement('td');
-            poblacion.textContent = pais.population;
-            const capital = document.createElement('td');
-            capital.textContent = pais.capital?.[0];
-            const idiomas = document.createElement('td');
-            idiomas.textContent = pais.languages ? Object.values(pais.languages).join(', ') : 'N/A';
-            const bandera = document.createElement('td');
-            const imagen = document.createElement('img');
-            imagen.src = pais.flags.png;
-            imagen.alt = pais.name.common;
-            imagen.style.width = '50px';
-            bandera.appendChild(imagen);
-  
-            // Agregar los elementos al DOM para mostrar los datos del país en la tabla de resultados
-            row.appendChild(nombre);
-            row.appendChild(poblacion);
-            row.appendChild(capital);
-            row.appendChild(idiomas);
-            row.appendChild(bandera);
-  
-            tablaResultados.appendChild(row);
-          });
+            estado.innerText = 'Error en la consulta';
+            alert('Ocurrió un error en la consulta. Por favor, inténtalo nuevamente.');
         }
-
-    // si no se cumple con la busqueda de informacion se musetra un alerta.
-      } else {
-        estado.innerText = 'Error en la consulta a la API';
-        alert('Ocurrió un error en la consulta a la API. Por favor, inténtalo nuevamente.');
-      }
     } catch (error) {
-      estado.innerText = 'Error en la consulta a la API';
-      console.log(error);
-      alert('Ocurrió un error en la consulta a la API. Por favor, inténtalo nuevamente.');
+        estado.innerText = 'Error en la consulta';
+        console.log(error);
+        alert('Ocurrió un error en la consulta. Por favor, inténtalo nuevamente.');
     }
-  };
+};
 
-  // agregar evento al boton  para consultar todos los países
+// agregar evento al boton  para consultar todos los países
 const botonConsultarTodos = document.getElementById('botonConsultarTodos');
 botonConsultarTodos.addEventListener('click', consultarTodosLosPaises);
 
 
-  
